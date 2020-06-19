@@ -1,7 +1,7 @@
 const socket = io();
 
-socket.on("message",(data)=>{
-    console.log(data);
+socket.on("message",(message)=>{
+    console.log(message);
 })
 
 document.querySelector(".message-form").addEventListener("submit",(e)=>{
