@@ -1,33 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <title>Chat App</title>
+        <link rel="icon" href="/img/favicon.png">
+        <link rel="stylesheet" href="/css/styles.min.css">
+    </head>
     <body>
-        <h1>Chat App</h1>
-
-        <div id="messages"></div>
-
-        <form class="message-form" action="submit">
-            <input type="text" placeholder="Enter message" name="message">
-             <button type="submit">send</button>
-        </form>
-        <button id="send-location">Send Location</button>
-
-        <script id="message-template" type="text/html">
-            <div>
-                <p>{{createdAt}} - {{message}}</p>
-                </div>
-        </script>
-
-        <script id="location-message-template" type="text/html">
-            <div>
-                <p><a href="{{url}}" target="_blank">{{createdAt}} - My Current Location</a></p>
-                </div>
-        </script>
-
-        <script src="/js/mustache.min.js"></script>
-        <script src="/js/moment.min.js"></script>
-        <script src="/js/qs.min.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/js/chat.js"></script>
+        <div class="centered-form">
+            <div class="centered-form__box">
+                <h1>Join</h1>
+                <form action="/chat.html">
+                    <label>Display name</label>
+                    <input type="text" name="username" placeholder="Display name" required>
+                    <label>Room</label>
+                    <input type="text" name="room" placeholder="Room" required>
+                    <button>Join</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
