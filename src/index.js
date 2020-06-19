@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const http = require("http");
 const socketio = require("socket.io");
+const {generateMessage,generateLocationMessage} = require("./utils/messages");
 
 const app = express();
 const server = http.createServer(app);
@@ -15,17 +16,18 @@ app.use(express.static(publicDirectoryPath));
 
 io.on("connection",(socket)=>{
     console.log("New webSocket Connection");
-    socket.emit("message","Welcome!");
-    socket.broadcast.emit("message","A new user has joined!");
-    socket.on("sendMessage",(message)=>{
-        io.emit("message",message);
+    socket.emit("message",generateMessage("welcome!"));
+    socket.broadcast.emit("message",generateMessage("A new user has joined!"));
+    socket.on("sendMessage",(message,callback)=>{
+        io.emit("message",generateMessage(message));
+        callback();
     });
     socket.on("sendLocation",(coords,callback)=>{
-        io.emit("message","https://google.com/maps?q="+coords.latitude+","+coords.longitude);
+        io.emit("locationMessage",generateLocationMessage("https://google.com/maps?q="+coords.latitude+","+coords.longitude));
         callback();
     })
     socket.on("disconnect",()=>{
-        io.emit("message","A user has left!");
+        io.emit("message",generateMessage("A user has left!"));
     });
 });
 

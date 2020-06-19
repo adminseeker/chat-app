@@ -3,11 +3,30 @@
     <head></head>
     <body>
         <h1>Chat App</h1>
+
+        <div id="messages"></div>
+
         <form class="message-form" action="submit">
             <input type="text" placeholder="Enter message" name="message">
-             <button type="submit">Submit</button>
+             <button type="submit">send</button>
         </form>
         <button id="send-location">Send Location</button>
+
+        <script id="message-template" type="text/html">
+            <div>
+                <p>{{createdAt}} - {{message}}</p>
+                </div>
+        </script>
+
+        <script id="location-message-template" type="text/html">
+            <div>
+                <p><a href="{{url}}" target="_blank">{{createdAt}} - My Current Location</a></p>
+                </div>
+        </script>
+
+        <script src="/js/mustache.min.js"></script>
+        <script src="/js/moment.min.js"></script>
+        <script src="/js/qs.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/js/chat.js"></script>
     </body>
